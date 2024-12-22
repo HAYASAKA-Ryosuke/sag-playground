@@ -12,8 +12,8 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - name : Install node
         run: sudo apt-get install nodejs
-      - name: Install npm
-        run: sudo apt-get install npm
+      - name: Install pnpm
+        run: sudo apt-get install pnpm
       - name: clone sag repository
         run: git clone git@github.com:HAYASAKA-Ryosuke/sag.git
       - name: Change directory
@@ -25,10 +25,14 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Build wasm
         run: wasm-pack build --target web
-      - name: Copy index.html
-        run: cp ../index.html public/
-      - name: Copy pkg
-        run: cp -r pkg public/
+      - name: Change directory
+        run: |
+          mv pkg ../
+          cd ../
+      - name: Install pnpm
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
       - name: Upload Pages Artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3

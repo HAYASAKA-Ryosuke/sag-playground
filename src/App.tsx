@@ -23,17 +23,18 @@ function App() {
   init();
 
   const run = () => {
+    // @ts-ignore
     const code = editorRef.current?.getValue();
     try {
       const result = evaluate(code);
       const output = result.split('__Result__')[0].split('__ConsoleOutput__')[1];
       setCodeOutput(output);
-    } catch (e) {
+    } catch (e: any) {
       setCodeOutput(e.toString());
     }
   };
 
-  const handleEditorDidMount = (editor, monaco) => {
+  const handleEditorDidMount = (editor: any, _: any) => {
     editorRef.current = editor;
   };
 
