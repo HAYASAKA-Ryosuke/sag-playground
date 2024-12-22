@@ -14,10 +14,6 @@ jobs:
         run: sudo apt-get install nodejs
       - name: Install pnpm
         run: sudo apt-get install npm
-      - name: Prepare build directory
-        run: |
-          mkdir public
-          ls -ltar
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Checkout tools repo
@@ -42,7 +38,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: dist
 
   deploy:
     needs: build
