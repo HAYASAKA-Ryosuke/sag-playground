@@ -21,6 +21,7 @@ jobs:
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Checkout tools repo
+        uses: actions/checkout@v4
         run: |
           cd sag
           wasm-pack build --target web
