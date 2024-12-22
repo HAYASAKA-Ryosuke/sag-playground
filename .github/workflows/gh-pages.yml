@@ -19,7 +19,7 @@ jobs:
       - name: Checkout tools repo
         uses: actions/checkout@v4
         with:
-          repository: HAYASAKA-Ryosuke/sag.git
+          repository: HAYASAKA-Ryosuke/sag
           path: sag
 
       - name: Build WASM
