@@ -22,18 +22,20 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Checkout tools repo
         uses: actions/checkout@v4
-        run: |
-          cd sag
-          wasm-pack build --target web
         with:
           repository: HAYASAKA-Ryosuke/sag.git
           path: sag
-      - name: Change directory
+
+      - name: Build WASM
         run: |
-          mv pkg ../
-          cd ../
-      - name: Install pnpm
-        run: npm install -g pnpm
+          cd sag
+          wasm-pack build --target web
+          cd ..
+          cp -r sag/pkg ./
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Build
         run: pnpm run build
       - name: Upload Pages Artifact
