@@ -40,7 +40,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          name: my-pages-artifact-${{ github.run_id }}
+          name: my-pages-artifact-${{ github.run_id }}-${{ github.event.inputs.timestamp || format('YYYYMMDD-HHmmss') }}
           path: dist
 
   deploy:
@@ -57,4 +57,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: my-pages-artifact-${{ github.run_id }}
+          artifact_name: my-pages-artifact-${{ github.run_id }}-${{ github.event.inputs.timestamp || format('YYYYMMDD-HHmmss') }}
