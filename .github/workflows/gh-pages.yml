@@ -46,7 +46,7 @@ jobs:
           name: my-pages-artifact-${{ github.run_id }}-${{ env.unixtime }}
           path: dist
     outputs:
-      unixtime: ${{ steps.unixtime.outputs.unixtime }}
+      unixtime: ${{ env.unixtime }}
 
   deploy:
     needs: build
