@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - env:
-          unixtime: ${{needs.build.outputs.unixtime}}
+          unixtime: ${{ needs.build.outputs.unixtime }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
