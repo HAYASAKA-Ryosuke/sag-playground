@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      unixtime: ${{ steps.unixtime.outputs.unixtime }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -35,6 +37,7 @@ jobs:
         run: pnpm install
       
       - name: Set Unixtime
+        id: unixtime
         run: echo "unixtime=$(date +'%s')" >> $GITHUB_ENV
         
       - name: Build
