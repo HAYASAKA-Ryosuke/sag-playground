@@ -60,4 +60,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: my-pages-artifact-${{ github.run_id }}-${{ unixtime }}
+          artifact_name: my-pages-artifact-${{ github.run_id }}-${{ needs.build.outputs.unixtime }}
