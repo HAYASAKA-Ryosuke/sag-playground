@@ -33,6 +33,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+      
+      - name: Set current datetime as env variable
+        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
 
       - name: Build
         run: pnpm run build
@@ -40,7 +43,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          name: my-pages-artifact-${{ github.run_id }}-${{ github.event.inputs.timestamp }}
+          name: my-pages-artifact-${{ github.run_id }}-${{ env.CURRENT_DATETIME }}
           path: dist
 
   deploy:
