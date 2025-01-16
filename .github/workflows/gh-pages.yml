@@ -36,8 +36,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       
-      - name: Set current datetime as env variable
-        id: unixtime
+      - id: unixtime
         run: echo "unixtime=$(date +'%s')" >> $GITHUB_ENV
 
       - name: Build
