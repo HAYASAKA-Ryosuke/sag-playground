@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      unixtime: ${{ steps.unixtime.outputs.CURRENT_DATETIME }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -61,4 +63,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: my-pages-artifact-${{ github.run_id }}-$CURRENT_DATETIME
+          artifact_name: my-pages-artifact-${{ github.run_id }}-${{ needs.build.outputs.unixtime}}
