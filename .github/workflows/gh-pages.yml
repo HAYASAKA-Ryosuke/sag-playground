@@ -2,6 +2,8 @@ name: GitHub Pages
 on:
   push:
     branches: [ main ]
+  repository_dispatch:
+    types: [sag-main-update]
 
 jobs:
   build:
